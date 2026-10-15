@@ -137,6 +137,8 @@ button{font:inherit;color:inherit}
     <button class="btn" onclick="reveal()">that i'm falling for you</button>
   </div>
   <div id="letter"></div>
+  <button class="btn go" id="sendans" style="display:none" onclick="sendAnswers()">send my answers 🧸</button>
+  <div class="react" id="sendnote"></div>
 </div></section>
 
 </main>
@@ -274,8 +276,14 @@ no pressure and no rush. i just wanted you to know it in a cute way.
 let typed=false;
 function reveal(){
   if(typed)return;typed=true;$('finopts').style.display='none';let n=0;const el=$('letter');
-  (function t(){el.textContent=LETTER.slice(0,n);if(n++<LETTER.length)setTimeout(t,35)})();
+  (function t(){el.textContent=LETTER.slice(0,n);if(n++<LETTER.length)setTimeout(t,35);else $('sendans').style.display='block'})();
   for(let i=0;i<24;i++)setTimeout(drop,i*120);
+}
+// her answers only leave the page if she taps this: it opens her own share sheet with a message she can read and edit before sending
+function sendAnswers(){
+  const text=`my answers 🧸\nquiz: ${score}/${Q.length}\nour next date: ${pick||'surprise me'}\ni opened everything ☘️`;
+  if(navigator.share)navigator.share({text}).catch(()=>{});
+  else{open('https://wa.me/?text='+encodeURIComponent(text),'_blank');if(navigator.clipboard)navigator.clipboard.writeText(text);$('sendnote').textContent='copied too, in case you want to paste it somewhere else'}
 }
 
 // ---- extras ----
