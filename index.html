@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#cfe6ff">
+<title>for mimi</title>
+<style>
+:root{--sky:#cfe6ff;--cream:#fff8ee;--blush:#ffd9e2;--clover:#7fb995;--ink:#33445a;--soft:#66788f;--card:#ffffffd9;--tile:#ffffffe6}
+@media (prefers-color-scheme:dark){:root{--sky:#1d2b3f;--cream:#141c2b;--blush:#3a2733;--clover:#6fae84;--ink:#eef3fa;--soft:#aebdd0;--card:#223046d9;--tile:#2d3f5c}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;font-family:ui-rounded,"Segoe UI",system-ui,sans-serif;font-size:18px;color:var(--ink);
+background:linear-gradient(160deg,var(--sky),var(--cream) 55%,var(--blush));background-attachment:fixed;overflow-x:hidden}
+main{max-width:640px;margin:0 auto;padding:max(22px,env(safe-area-inset-top)) 14px calc(110px + env(safe-area-inset-bottom));position:relative;z-index:1}
+@media (max-width:420px){body{font-size:17px}h1{font-size:2rem}.card{padding:24px 18px;border-radius:24px}.tile b{font-size:2.2rem}.tile{font-size:.95rem}.flip{min-height:118px;font-size:.95rem}.pola{width:47%}}
+.card{-webkit-backdrop-filter:blur(8px)}
+html{-webkit-text-size-adjust:100%}
+section{display:none;animation:in .5s ease}
+section.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{background:var(--card);backdrop-filter:blur(8px);border-radius:28px;padding:30px 24px;box-shadow:0 12px 34px #0000001f}
+h1{font-size:2.3rem;margin:.1em 0 .2em;line-height:1.15}
+h2{font-size:1.45rem;margin:.2em 0 .8em;line-height:1.3}
+p{line-height:1.65;margin:.6em 0}
+.soft{color:var(--soft)}
+.big{font-size:4rem;text-align:center;margin:6px 0 10px;user-select:none}
+.big span{cursor:pointer;display:inline-block;transition:transform .2s}
+.big span:active{transform:scale(1.35) rotate(10deg)}
+button{font:inherit;color:inherit}
+.btn{display:block;width:100%;margin:12px 0;padding:18px 18px;border:0;border-radius:18px;background:var(--tile);box-shadow:0 4px 12px #0000001a;cursor:pointer;text-align:left;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn.go{background:var(--clover);color:#fff;text-align:center;font-weight:700;font-size:1.05rem}
+.btn.right{outline:3px solid var(--clover)}
+.react{min-height:3.4em;margin:.8em 0;font-style:italic;color:var(--soft)}
+.bar{height:8px;border-radius:8px;background:#ffffff70;margin:4px 0 18px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--clover);transition:width .5s}
+.back{border:0;background:none;color:var(--soft);padding:6px 2px;margin-bottom:8px;cursor:pointer;font-size:1rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.tile{position:relative;aspect-ratio:1/.95;border:0;border-radius:24px;background:var(--tile);box-shadow:0 6px 18px #0000001f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-weight:600;padding:8px;transition:transform .2s}
+.tile:active{transform:scale(.96)}
+.tile b{font-size:2.6rem;font-weight:400}
+.tile small{font-weight:400;color:var(--soft);font-size:.8rem}
+.tile.done::after{content:"✓";position:absolute;top:10px;right:14px;color:var(--clover);font-weight:800}
+.tile.lock{opacity:.55}
+.tile.wide{grid-column:1/-1;aspect-ratio:auto;padding:20px}
+.dots{display:flex;gap:7px;justify-content:center;margin:16px 0}
+.dots i{width:9px;height:9px;border-radius:50%;background:#8aa0;background:var(--soft);opacity:.3}
+.dots i.on{opacity:1;background:var(--clover)}
+.chap{text-align:center;min-height:11em}
+.chap .e{font-size:3.4rem}
+.env{display:block;width:100%;margin:12px 0;padding:18px;border:0;border-radius:18px;background:var(--tile);box-shadow:0 4px 12px #0000001a;cursor:pointer;text-align:left}
+.env .msg{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--soft);font-style:italic}
+.env.open .msg{display:block;animation:in .4s}
+.flips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flip{min-height:130px;border:0;border-radius:20px;padding:14px;background:var(--tile);box-shadow:0 4px 12px #0000001a;cursor:pointer;font-weight:600}
+.flip.open{background:var(--clover);color:#fff;font-weight:400;font-size:.95rem}
+.polas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:18px 0}
+.pola{width:46%;background:#fff;padding:8px 8px 4px;border-radius:6px;box-shadow:0 4px 12px #0003;color:#445}
+.pola:nth-child(odd){transform:rotate(-2deg)}.pola:nth-child(even){transform:rotate(2deg)}
+.pola{padding-bottom:22px}
+.pola img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px}
+.cimg{width:100%;max-height:48vh;object-fit:cover;border-radius:18px;margin:6px 0 14px;box-shadow:0 6px 18px #0003}
+#letter{white-space:pre-wrap;line-height:1.8;font-size:1.15rem}
+#music{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:5;border:0;border-radius:50%;width:50px;height:50px;font-size:1.3rem;background:var(--tile);box-shadow:0 3px 10px #0003;cursor:pointer}
+#egg{position:fixed;inset:0;display:none;place-items:center;background:#0006;z-index:9;padding:20px}
+#egg.on{display:grid}
+.float{position:fixed;top:-40px;z-index:0;opacity:.35;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<main>
+
+<section id="hub" class="on"><div class="card">
+  <div class="big"><span id="clover">☘️</span><span id="teddy">🧸</span></div>
+  <h1>hey mimi</h1>
+  <p>i made you a little world. five things to open, any order you like. take your time.</p>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="grid" id="tiles"></div>
+</div></section>
+
+<section id="quiz"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
+  <div class="bar"><i id="qprog"></i></div>
+  <h2 id="qt"></h2>
+  <div id="opts"></div>
+  <div class="react" id="react"></div>
+  <button class="btn go" id="qnext" style="display:none" onclick="qnext()">next</button>
+</div></section>
+
+<section id="qres"><div class="card">
+  <div class="big">🧸</div>
+  <h1 id="score"></h1>
+  <p id="scoretxt"></p>
+  <button class="btn go" onclick="finish('quiz')">back to the world</button>
+</div></section>
+
+<section id="story"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
+  <div class="chap" id="chap"></div>
+  <div class="dots" id="dots"></div>
+  <button class="btn go" id="snext" onclick="snext()">next →</button>
+  <div class="polas" id="polas" style="display:none"></div>
+</div></section>
+
+<section id="when"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
+  <h2>open when...</h2>
+  <p class="soft">tap an envelope. open at least three.</p>
+  <div id="envs"></div>
+</div></section>
+
+<section id="why"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
+  <h2>things i like about you</h2>
+  <p class="soft">tap a card. flip at least three.</p>
+  <div class="flips" id="flips"></div>
+</div></section>
+
+<section id="date"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
+  <h2>pick our next date</h2>
+  <p class="soft">you choose. i'll show up.</p>
+  <div id="dopts"></div>
+  <div class="react" id="dreact"></div>
+  <button class="btn go" id="dsend" style="display:none" onclick="sendPick()">send me my pick</button>
+</div></section>
+
+<section id="fin"><div class="card">
+  <h2>last one, and it's about me.<br>what am i trying to tell you with this whole world?</h2>
+  <div id="finopts">
+    <button class="btn" onclick="reveal()">that i'm a nerd with free time</button>
+    <button class="btn" onclick="reveal()">that i know you pretty well</button>
+    <button class="btn" onclick="reveal()">that i'm falling for you</button>
+  </div>
+  <div id="letter"></div>
+</div></section>
+
+</main>
+<button id="music" title="music" onclick="toggleMusic()">🎵</button>
+<div id="egg" onclick="this.classList.remove('on')"><div class="card" style="max-width:340px;text-align:center">
+  <div class="big">☘️🧸</div>
+  <p>you found the secret one. of course you did.</p>
+  <p class="soft">somebody who notices small things deserves to have her small things noticed back.</p>
+</div></div>
+
+<script>
+// ponytail: all content is inline data; edit the arrays below to change any text
+const $=id=>document.getElementById(id);
+const done=new Set();
+const PAGES=[
+ ['quiz','🧠','the quiz','how well do i know you'],
+ ['story','🗺️','our story','chapter by chapter'],
+ ['when','💌','open when...','little envelopes'],
+ ['why','🎟️','why you','things i like about you'],
+ ['date','🍦','our next date','you pick']
+];
+function show(id){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===id));scrollTo(0,0);if(id==='hub')hub()}
+function hub(){
+  const n=done.size;$('prog').style.width=(n/PAGES.length*100)+'%';
+  $('tiles').innerHTML=PAGES.map(p=>`<button class="tile ${done.has(p[0])?'done':''}" onclick="openPage('${p[0]}')"><b>${p[1]}</b>${p[2]}<small>${p[3]}</small></button>`).join('')+
+   `<button class="tile wide ${n<PAGES.length?'lock':''}" onclick="${n<PAGES.length?'':"show('fin')"}"><b>${n<PAGES.length?'🔒':'💙'}</b>${n<PAGES.length?'one last thing ('+n+'/5 opened)':'one last thing, open it'}</button>`;
+}
+function openPage(id){show(id);({quiz:startQuiz,story:startStory,when:startWhen,why:startWhy,date:startDate})[id]()}
+function finish(id){done.add(id);show('hub')}
+
+// ---- quiz ----
+const Q=[
+ {q:"friday night, you'd pick:",o:["loud night out with friends","books and tea in bed","food and a series"],g:2,hit:"food and a series. blanket, snacks, do not disturb. i knew it.",miss:"huh. noted. you're allowed to surprise me."},
+ {q:"hangover cure:",o:["egg roll and coffee","greasy chips","just sleep"],g:2,hit:"just sleep. honestly the right answer.",miss:"ok that's a better answer than mine. writing it down."},
+ {q:"after a long shift, you want:",o:["silence, leave me alone","a call with me","food, then bed"],g:0,hit:"silence. understood. you get your quiet, no questions.",miss:"fair. you always get the quiet if you want it."},
+ {q:"who knows the other's shift times better?",o:["me","you","neither, we both wing it"],g:0,hit:"me. i'm paying attention, ok 😂",miss:"you? fine. i'll try harder."},
+ {q:"which one is you?",o:["☘️ the lucky clover","🧸 the soft teddy","both, depends on the day"],g:2,hit:"both. clover on the outside, teddy inside. don't tell anyone.",miss:"i think it's both, but you know yourself better."},
+ {q:"what did we first talk about?",o:["books and being introverts","football","what to eat"],g:0,hit:"books. you said you're an introvert and i thought oh no, she's interesting.",miss:"it was books, mimi. i remember better than you 😂"},
+ {q:"greenwich park, what did we do?",o:["ice cream","bubble tea","nothing, we just walked"],g:2,hit:"we just walked. no plan, and i wore light blue on purpose 😂",miss:"we just walked, mimi. and the light blue was on purpose."},
+ {q:"your sweet tooth picks:",o:["ice cream, always","gulab jamun","chocolate anything"],g:0,hit:"ice cream. i'm not even surprised.",miss:"ok, i'll bring that one next time."},
+ {q:"you swear and get dramatic in:",o:["nepali","hindi","all three, whatever fits"],g:2,hit:"all of it. nepali, hindi and english in one sentence. i love it.",miss:"hmm. i thought it was all three. i'll listen closer."},
+ {q:"on a day off you'd rather:",o:["stay in and do nothing","go somewhere new","see friends, then crash"],g:0,hit:"a full day of nothing. respect.",miss:"ok that sounds good too, take me along."},
+ {q:"how do you take a surprise?",o:["act annoyed, secretly love it","cry a little","ask who told you"],g:0,hit:"annoyed on the outside, melting inside. i know you.",miss:"fine, i'll test it and find out 😂"}
+];
+let qi=0,score=0,locked=false;
+function startQuiz(){qi=0;score=0;askQ()}
+function askQ(){
+  locked=false;const c=Q[qi];$('qt').textContent=c.q;$('react').textContent='';$('qnext').style.display='none';
+  $('qprog').style.width=(qi/Q.length*100)+'%';$('opts').innerHTML='';
+  c.o.forEach((t,k)=>{const b=document.createElement('button');b.className='btn';b.textContent=t;b.onclick=()=>pickQ(k);$('opts').append(b)});
+}
+function pickQ(k){
+  if(locked)return;locked=true;const c=Q[qi];const hit=k===c.g;if(hit)score++;
+  $('opts').children[c.g].classList.add('right');$('react').textContent=hit?c.hit:c.miss;
+  $('qnext').style.display='block';$('qnext').textContent=qi===Q.length-1?'see how i did':'next';
+}
+function qnext(){qi++;if(qi<Q.length)askQ();else{
+  show('qres');$('score').textContent=score+" out of "+Q.length;
+  $('scoretxt').textContent=score>=8?"ok i'm kind of proud of myself. i've been paying attention.":score>=5?"not bad. you're still mysterious, which is fine. i like learning you.":"i have a lot to learn about you. good, that's the fun part.";
+}}
+
+// ---- story ----
+const CH=[
+ ['📚','hi, are you an introvert too?',"it started with books and introvert banter. i didn't know it yet, but i was already hooked."],
+ ['📞','then the calls',"you call, you remember my shifts, you plan things like it's nothing. i just get to show up."],
+ ['👕','matching, by accident',"somewhere in there we started matching outfits without planning it. you probably noticed the light blue."],
+ ['🌳','greenwich',"a long walk in the park. light blue on purpose. one of my favourite afternoons."],
+ ['☘️🧸','and now',"now there's a whole little world because i keep thinking about you. that's the story so far. the next chapter is up to us."]
+];
+let si=0;
+function startStory(){si=0;$('polas').style.display='none';drawChap()}
+// photos: put files in the photos folder named ch1..ch5 (one per chapter) and g1..g6 (final gallery); jpg, jpeg, png or webp
+function loadImg(name,cb,k=0){const E=['jpg','jpeg','png','webp'];if(k>=E.length)return;
+  const im=new Image();im.onload=()=>cb(im);im.onerror=()=>loadImg(name,cb,k+1);im.src='photos/'+name+'.'+E[k]}
+function drawChap(){
+  const c=CH[si];$('chap').innerHTML=`<div class="e">${c[0]}</div><div id="cph"></div><h2>${c[1]}</h2><p>${c[2]}</p>`;
+  loadImg('ch'+(si+1),im=>{im.className='cimg';$('cph').append(im)});
+  $('dots').innerHTML=CH.map((_,k)=>`<i class="${k<=si?'on':''}"></i>`).join('');
+  $('snext').textContent=si===CH.length-1?'back to the world':'next →';
+  if(si===CH.length-1)polas();
+}
+function snext(){if(si<CH.length-1){si++;drawChap()}else finish('story')}
+function polas(){
+  const box=$('polas');box.innerHTML='';box.style.display='flex';
+  for(let n=1;n<=6;n++)loadImg('g'+n,im=>{const d=document.createElement('div');d.className='pola';d.append(im);box.append(d)});
+}
+
+// ---- open when ----
+const OW=[
+ ['you\'re tired after a shift',"sit down. drink water. you did more today than you give yourself credit for. i'm proud of you."],
+ ['you miss me',"same here. text me, call me, whatever. i'm easy to find."],
+ ['you can\'t sleep',"close your eyes. think about ice cream. i'll be thinking about you."],
+ ['you\'re overthinking',"ask me directly. i'd rather answer than have you guess."],
+ ['you need a laugh',"why did the teddy refuse dessert? he was already stuffed. 🧸"]
+];
+let opened=new Set();
+function startWhen(){opened=new Set();$('envs').innerHTML=OW.map((o,k)=>`<button class="env" onclick="openEnv(this,${k})">💌 open when ${o[0]}<div class="msg">${o[1]}</div></button>`).join('')}
+function openEnv(el,k){el.classList.add('open');opened.add(k);if(opened.size>=3&&!done.has('when')){done.add('when');toastDone()}}
+
+// ---- why ----
+const WY=[
+ ['soft and sharp',"you can be gentle and straight in the same sentence. rare."],
+ ['you say what you feel',"you tell me when you're happy, scared or missing me. i'm learning from you."],
+ ['you work hard',"long shifts, new trials, starting again. you never make a big deal of it."],
+ ['we match',"i don't match outfits with just anyone. only you."],
+ ['ice cream with you',"it tastes better. i checked. twice."]
+];
+let flipped=new Set();
+function startWhy(){flipped=new Set();$('flips').innerHTML=WY.map((w,k)=>`<button class="flip" onclick="flip(this,${k})">${w[0]}</button>`).join('')}
+function flip(el,k){el.classList.add('open');el.textContent=WY[k][1];flipped.add(k);if(flipped.size>=3&&!done.has('why')){done.add('why');toastDone()}}
+
+// ---- date ----
+const DT=['ice cream again, obviously 🍦','books and coffee, no talking for an hour 📚','cook something together 🍳','long walk and too many photos 🚶','you surprise me 🎁'];
+let pick='';
+function startDate(){pick='';$('dreact').textContent='';$('dsend').style.display='none';
+  $('dopts').innerHTML=DT.map((d,k)=>`<button class="btn" onclick="chooseDate(${k})">${d}</button>`).join('')}
+function chooseDate(k){pick=DT[k];$('dreact').textContent="good choice. consider it booked.";$('dsend').style.display='block';done.add('date')}
+function sendPick(){
+  const text='my pick for our next date: '+pick;
+  if(navigator.share)navigator.share({text}).catch(()=>{});
+  else if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>{$('dreact').textContent='copied. paste it to me 🧸'});
+}
+function toastDone(){const t=document.createElement('div');t.textContent='✓ done, go back to the world';
+  t.style.cssText='position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--clover);color:#fff;padding:10px 18px;border-radius:20px;z-index:8';
+  document.body.append(t);setTimeout(()=>t.remove(),2200)}
+
+// ---- final ----
+const LETTER=`all three, honestly. but mostly the last one.
+
+i'm falling for you, mimi. properly.
+
+no pressure and no rush. i just wanted you to know it in a cute way.
+
+☘️🧸`;
+let typed=false;
+function reveal(){
+  if(typed)return;typed=true;$('finopts').style.display='none';let n=0;const el=$('letter');
+  (function t(){el.textContent=LETTER.slice(0,n);if(n++<LETTER.length)setTimeout(t,35)})();
+  for(let i=0;i<24;i++)setTimeout(drop,i*120);
+}
+
+// ---- extras ----
+function drop(){const s=document.createElement('span');s.className='float';s.textContent=['☘️','🧸','💙'][Math.random()*3|0];
+  s.style.left=Math.random()*95+'vw';s.style.fontSize=(18+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*6)+'s';
+  document.body.append(s);setTimeout(()=>s.remove(),14000)}
+setInterval(drop,2500);
+let taps=0;['clover','teddy'].forEach(id=>$(id).onclick=()=>{if(++taps>=3){$('egg').classList.add('on');taps=0}});
+let ac,tm;
+function toggleMusic(){
+  if(tm){clearInterval(tm);tm=null;$('music').textContent='🎵';return}
+  ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();
+  const notes=[523.25,587.33,659.25,783.99,880],seq=[0,2,1,3,2,4,3,1];let k=0;
+  tm=setInterval(()=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=notes[seq[k++%seq.length]];
+    g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.06,ac.currentTime+.05);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+1.4);
+    o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+1.5)},700);
+  $('music').textContent='🔇';
+}
+hub();
+</script>
+</body>
+</html>
