@@ -6,6 +6,6 @@ ch3  chapter 3: matching outfits
 ch4  chapter 4: greenwich
 ch5  chapter 5: and now
 
-g1 ... g6  the polaroid gallery at the end of the story (up to six)
+gh1 ... gh6  the polaroid gallery at the end of the story (up to six)
 
 Example: ch4.jpg, g1.png. Missing files are simply skipped.

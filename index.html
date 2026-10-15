@@ -90,6 +90,7 @@ button{font:inherit;color:inherit}
 </div></section>
 
 <section id="qres"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
   <div class="big">🧸</div>
   <h1 id="score"></h1>
   <p id="scoretxt"></p>
@@ -128,6 +129,7 @@ button{font:inherit;color:inherit}
 </div></section>
 
 <section id="fin"><div class="card">
+  <button class="back" onclick="show('hub')">← back</button>
   <h2>last one, and it's about me.<br>what am i trying to tell you with this whole world?</h2>
   <div id="finopts">
     <button class="btn" onclick="reveal()">that i'm a nerd with free time</button>
@@ -219,7 +221,7 @@ function drawChap(){
 function snext(){if(si<CH.length-1){si++;drawChap()}else finish('story')}
 function polas(){
   const box=$('polas');box.innerHTML='';box.style.display='flex';
-  for(let n=1;n<=6;n++)loadImg('g'+n,im=>{const d=document.createElement('div');d.className='pola';d.append(im);box.append(d)});
+  for(let n=1;n<=6;n++)loadImg('gh'+n,im=>{const d=document.createElement('div');d.className='pola';d.append(im);box.append(d)});
 }
 
 // ---- open when ----
