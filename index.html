@@ -294,6 +294,9 @@ function toggleMusic(){
     o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+1.5)},700);
   $('music').textContent='🔇';
 }
+// phones stuck in "desktop site" mode lay the page out ~980px wide, so everything looks tiny; zoom the page back to the real screen width
+function fit(){const s=screen.width,w=innerWidth;document.body.style.zoom=(s<=800&&w>s*1.25)?w/s:''}
+fit();addEventListener('resize',fit);addEventListener('orientationchange',fit);
 hub();
 </script>
 </body>
